@@ -26,6 +26,14 @@
 <meta name="twitter:description" content="<{$icms_meta_description}>" />
 <meta name="twitter:image" content="<{$icms_imageurl}>img/icon.jpg" />
 
+<!-- meta tags for sites with local listings 
+<meta name="geo.region" content="US-MN" />
+<meta name="geo.placename" content="Minneapolis-Saint Paul" />
+-->
+<!-- specific coordinates of the location
+<meta name="geo.position" content="44.860699;-93.257625" />
+<meta name="ICBM" content="44.860699, -93.257625" />
+-->
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -33,24 +41,254 @@
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous">
 
+<!--  local stylesheet -->
+<link rel="stylesheet" href="<{$icms_imageurl}>css/custom.css">
+
 <link rel="shortcut icon" type="image/ico"
-	href="<{$icms_imageurl}>favicon.ico" />
-<link rel="icon" type="image/png" href="<{$icms_imageurl}>icon.png" />
+	href="<{$icms_imageurl}>imgaes/favicon.ico" />
+<link rel="icon" type="image/png" href="<{$icms_imageurl}>images/icon.png" />
 
-<{$icms_module_header}>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 	crossorigin="anonymous"></script>
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
 	crossorigin="anonymous"></script>
 
+<{$icms_module_header}>
+
 <title><{if $icms_pagetitle !=''}><{$icms_pagetitle}> -
 	<{/if}><{$icms_sitename}></title>
 </head>
 <body>
+	<{if $xoBlocks.canvas_left and $xoBlocks.canvas_right}>
+		<{assign var=columns_layout value='col-md-6'}>
+		<{assign var=block_layout value='col-md-6'}>
+	<{elseif $xoBlocks.canvas_left or $xoBlocks.canvas_right}>
+		<{assign var=columns_layout value='col-md-9'}>
+		<{assign var=block_layout value='col-md-6'}>
+	<{else}>
+		<{assign var=columns_layout value='col-md-12'}>
+		<{assign var=block_layout value='col-md-6'}>
+	<{/if}>  
+	<div class="container">
+		<div class="row header">
+			<div class="col-md-7">        
+				<a class="logo" href="<{$icms_url}>" title="<{$smarty.const.THEME_HOME_DESC}> - <{$icms_sitename}>">
+					<img src="<{$icms_url}>/uploads/imagemanager/logos/img482278e29e81c.png" class="img-fluid" alt="<{$icms_sitename}>" />
+				</a>
+				<span class="slogan"><{$icms_slogan}></span>
+			</div>
+			<div class="col-md-5">
+				<{$icmsCustomtags.banner}>
+			</div>  
+		</div>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="<{$icms_url}>"><{$smarty.const.THEME_HOME}></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
 
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item <{if $icms_requesturi == '/modules/news/'}>active<{/if}>">
+			<a class="nav-link" href="<{$icms_url}>/modules/news/" title="<{$smarty.const.THEME_MODULE1_DESC}>"><{$smarty.const.THEME_MODULE1}> <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item <{if $icms_requesturi == '/modules/iforum/'}>active<{/if}>">
+			<a class="nav-link" href="<{$icms_url}>/modules/iforum" title="<{$smarty.const.THEME_MODULE2_DESC}>"><{$smarty.const.THEME_MODULE2}></a>
+		      </li>
+		      <li class="nav-item <{if $icms_requesturi == '/modules/gallery/'}>active<{/if}>">
+			<a class="nav-link" href="<{$icms_url}>/modules/gallery/" title="<{$smarty.const.THEME_MODULE3_DESC}>"><{$smarty.const.THEME_MODULE3}></a>
+		      </li>
+		      <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  More
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <a class="dropdown-item" href="<{$icms_url}>/modules/MODULE4/" title="<{$smarty.const.THEME_MODULE4_DESC}>"><{$smarty.const.THEME_MODULE4}></a>
+			  <a class="dropdown-item" href="<{$icms_url}>/modules/MODULE5/" title="<{$smarty.const.THEME_MODULE5_DESC}>"><{$smarty.const.THEME_MODULE5}></a>
+			  <!-- <div class="dropdown-divider"></div> -->
+			  <a class="dropdown-item" href="<{$icms_url}>/modules/MODULE6/" title="<{$smarty.const.THEME_MODULE6_DESC}>"><{$smarty.const.THEME_MODULE6}></a>
+			</div>
+		      </li>
+		      </ul>
+		      <ul class="navbar-nav mr-auto navbar-right">
+		      <li class="nav-item dropdown">
+		      	 <{if !$icms_isuser}> 
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<{$smarty.const.THEME_PSEUDO}>				  
+		      	 	</a>
+		      	 	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<form style="margin-left: 10px;margin-right: 10px;padding-bottom: 8px;padding-top: 8px;" action="<{$icms_url}>/user.php" method="post" class="form-signin navbar-left">
+						<input type="text" placeholder="<{$smarty.const.THEME_DESC_PSEUDO}>" class="form-control" name="uname" />
+						<input type="password" placeholder="<{$smarty.const.THEME_DESC_PASSWORD}>" class="form-control" name="pass" />
+						<{if $rememberme}>
+							<input type="form-check" name="rememberme" value="On" /><{$lang_rememberme}>
+						<{/if}>
+						<input type="hidden" name="xoops_redirect" value="<{$icms_requesturi}>" />
+						<input type="hidden" name="op" value="login" />
+						<button class="btn btn-primary btn-block" type="submit"><{$smarty.const.THEME_PSEUDO}></button>
+					</form>
+			  	<div class="dropdown-divider"></div>
+				 	 <a class="dropdown-item" href="<{$icms_url}>/user.php#lost">Forgot your password?</a>
+				 	 <a class="dropdown-item" href="<{$icms_url}>/register.php"><{$smarty.const.THEME_REGISTER}></a>
+				</div>
+
+		      	 <{else}>
+				<div class="btn-group">
+
+					<a href="<{$icms_url}>/user.php" role="button" class="btn btn-info"><span class="glyphicon glyphicon-user" style="padding-right:5px;"></span> <{$icms_uname}></a>
+					<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>			
+					<div class="dropdown-menu" role="menu">
+						<a class="dropdown-item" href="<{$icms_url}>/edituser.php"><span class="glyphicon glyphicon-pencil" style="padding-right:5px;"></span> Edit Profile</a>
+						<a class="dropdown-item" href="<{$icms_url}>/edituser.php?op=avatarform"><span class="glyphicon glyphicon-camera" style="padding-right:5px;"></span> My Avatar</a>
+						<a class="dropdown-item" href="<{$icms_url}>/notifications.php"><span class="glyphicon glyphicon-envelope" style="padding-right:5px;"></span> <{$smarty.const.THEME_NOTIFICATION}></a>
+						<{xoInboxCount assign=pmcount}><{if $pmcount}><a class="dropdown-item" href="<{$icms_url}>/viewpmsg.php" title="<{$smarty.const.THEME_INBOX}> <{$pmcount}> <{$smarty.const.THEME_NOTREAD}>"><span class="glyphicon glyphicon-comment" style="padding-right:5px;"></span> <{$smarty.const.THEME_INBOX}> <span class="badge badge-info"><{$pmcount}></span></a><{else}><a class="dropdown-item" href="<{$icms_url}>/viewpmsg.php" title="<{$smarty.const.THEME_INBOX}>"><span class="glyphicon glyphicon-comment" style="padding-right:5px;"></span> <{$smarty.const.THEME_INBOX}></a><{/if}>
+					  	<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="<{$icms_url}>/admin.php"><span class="glyphicon glyphicon-wrench" style="padding-right:5px;"></span> <{$smarty.const.THEME_ADMIN}></a>
+						<a class="dropdown-item" href="<{$icms_url}>/user.php?op=logout"><span class="glyphicon glyphicon-off" style="padding-right:5px;"></span> <{$smarty.const.THEME_LOGOUT}></a>
+
+					</div>
+				</div>
+		      	 </ul>		      	 
+		      	 <{/if}>
+		      </li>
+		    </ul>
+		    <form class="form-inline my-2 my-lg-0" action="<{$icms_url}>/search.php">
+		      <input class="form-control mr-sm-2" type="search" placeholder="<{$smarty.const.THEME_SEARCH}>" aria-label="Search">
+		      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><{$smarty.const.THEME_SEARCH}></button> -->
+		    </form>
+		  </div>
+		</nav>		
+		<!-- End Nav-bar -->
+		<!-- Example row of columns -->
+		<div class="content-main">
+			<{if $xoBlocks.slider}>
+				<{include file="$theme_name/slider.html"}>
+			<{/if}>
+			<div class="row">
+				<{if $xoBlocks.canvas_left}>
+					<div class="col-md-3">  
+				 	   <div class="well">
+						<{foreach item=block from=$xoBlocks.canvas_left}>	             
+							<div class="infobox">
+								<h4><{$block.title}></h4>
+								<div class="contnt"><{$block.content}></div>
+							</div>
+						<{/foreach}>
+						</div>
+					</div>
+				<{/if}>
+		 		<div class="<{if $columns_layout}><{$columns_layout}><{/if}>"> 
+		 			<{if $xoBlocks.page_topcenter}>
+						<{foreach item=block from=$xoBlocks.page_topcenter}>
+							<div class="row">
+								<div class="col-md-12">
+									<h2><{$block.title}></h2>
+									<div class="contnt"><{$block.content}></div>
+								</div>
+							</div>
+		 				<{/foreach}>
+					<{/if}>
+		 			<{if $xoBlocks.page_topleft or $xoBlocks.page_topright}>
+						<div class="row">
+							<{foreach item=block from=$xoBlocks.page_topleft}>
+							<div class="<{if $columns_layout}><{$block_layout}><{/if}>">
+								<h4><{$block.title}></h4>
+								<div class="contnt"><{$block.content}></div>
+							</div>
+							<{/foreach}>
+							<{foreach item=block from=$xoBlocks.page_topright}>	             
+								<div class="<{if $columns_layout}><{$block_layout}><{/if}>">
+									<h4><{$block.title}></h4>
+									<div class="contnt"><{$block.content}></div>
+								</div>            
+							<{/foreach}>   
+						</div>
+					<{/if}>
+					<{if $icms_contents}>
+						<div id="xo-content"><{$icms_contents}></div>
+					<{/if}>  
+					<{if $xoBlocks.page_bottomcenter}>
+						<{foreach item=block from=$xoBlocks.page_bottomcenter}>
+							<div class="row">
+								<div class="col-md-12">
+									<h2> <{$block.title}></h2>              
+									<div class="contnt"><{$block.content}></div>
+								</div>    
+							</div>
+						<{/foreach}>
+					<{/if}>
+					<{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright}>
+						<div class="row">
+							<{foreach item=block from=$xoBlocks.page_bottomleft}>
+								<div class="<{if $columns_layout}><{$block_layout}><{/if}>">
+									<h4><{$block.title}></h4>
+									<div class="contnt"><{$block.content}></div>
+								</div>            
+							<{/foreach}>
+							<{foreach item=block from=$xoBlocks.page_bottomright}>
+								<div class="<{if $columns_layout}><{$block_layout}><{/if}>">
+									<h4><{$block.title}></h4>
+									<div class="contnt"><{$block.content}></div>
+								</div>
+		 					<{/foreach}>
+						</div>
+					<{/if}>
+				</div>                          
+				<{if $xoBlocks.canvas_right or $xoBlocks.tabs or $xoBlocks.accordion or $xoBlocks.menu}>	
+		 			<div class="col-md-3">
+						<{if $xoBlocks.tabs}>
+							<{include file="$theme_name/tabs.html"}>
+						<{/if}>
+						<{if $xoBlocks.accordion}>
+							<{include file="$theme_name/accordion.html"}>
+						<{/if}>
+						<{if $xoBlocks.menu}>
+							<{include file="$theme_name/menu.html"}>
+						<{/if}>
+					<div class="well">
+						<{foreach item=block from=$xoBlocks.canvas_right}>
+							<div class="infobox">
+								<h4><{$block.title}></h4>
+								<div class="contnt"><{$block.content}></div>
+							</div>
+						<{/foreach}>
+					</div>
+				</div>
+			<{/if}>
+		</div>  
+		<{if $xoBlocks.prefoot}>
+			<div class="row">
+				<div class="col-md-12 well well-small">
+				<{foreach item=block from=$xoBlocks.prefoot}>
+					<div class="span4">
+						<h4><{$block.title}></h4>
+						<div class="contnt"><{$block.content}></div>
+					</div>
+				<{/foreach}>
+				</div>
+			</div>
+		<{/if}>
+
+	</div>
+	<hr>
+	<footer>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('a[href=#top]').click(function(){
+					$('html, body').animate({scrollTop:0}, 'slow');
+					return false;
+				});
+			});
+		</script>
+		<p class="float-right"><a href="#top"><{$smarty.const.THEME_UPTOP}></a></p>                      
+		<p><{$icms_footer}><{$icmsCustomtags.footer}></p>
+	</footer>
 </body>
 </html>
