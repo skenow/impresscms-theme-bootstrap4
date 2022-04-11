@@ -317,21 +317,22 @@
 			<{/if}>
 		</div>
 		<hr>
-		<footer>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$('a[href=#top]').click(function() {
-						$('html, body').animate({
-							scrollTop : 0
-						}, 'slow');
-						return false;
-					});
+	</div>
+	<footer>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('a[href=#top]').click(function() {
+					$('html, body').animate({
+						scrollTop : 0
+					}, 'slow');
+					return false;
 				});
-			</script>
-			<p class="float-right">
-				<a href="#top"><{$smarty.const.THEME_UPTOP}></a>
-			</p>
-			<p><{$icms_footer}><{$icmsCustomtags.footer}></p>
-		</footer>
+			});
+		</script>
+		<p class="float-right">
+			<a href="#top"><{$smarty.const.THEME_UPTOP}></a>
+		</p>
+		<p><{$icms_footer}><{$icmsCustomtags.footer}></p>
+	</footer>
 </body>
 </html>
