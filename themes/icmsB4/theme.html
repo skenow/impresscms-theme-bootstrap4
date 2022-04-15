@@ -202,7 +202,8 @@
 				<!-- Search field -->
 				<form class="form-inline my-2 my-lg-0 ml-2" action="<{$icms_url}>/search.php">
 					<input class="form-control mr-sm-2" type="search"
-						placeholder="<{$smarty.const.THEME_SEARCH}>" aria-label="Search">
+						placeholder="<{$smarty.const.THEME_SEARCH}>" aria-label="Search" name="query">
+					<input type="hidden" name="action" value="results" />
 					<!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><{$smarty.const.THEME_SEARCH}></button> -->
 				</form>
 		</nav>
