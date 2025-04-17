@@ -187,9 +187,12 @@
 										<{$smarty.const.THEME_INBOX}></a>
 									<{/if}>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="<{$icms_url}>/admin.php"><span
-										class="glyphicon glyphicon-wrench" style="padding-right: 5px;"></span>
-										<{$smarty.const.THEME_ADMIN}></a> <a class="dropdown-item"
+										<{if $icms_isadmin}>
+											<a class="dropdown-item" href="<{$icms_url}>/admin.php"><span
+											class="glyphicon glyphicon-wrench" style="padding-right: 5px;"></span>
+											<{$smarty.const.THEME_ADMIN}></a>
+										<{/if}>
+										<a class="dropdown-item"
 										href="<{$icms_url}>/user.php?op=logout"><span
 										class="glyphicon glyphicon-off" style="padding-right: 5px;"></span>
 										<{$smarty.const.THEME_LOGOUT}></a>
